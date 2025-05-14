@@ -1,4 +1,4 @@
-name: hedron_archive
+name: Hedron Archive
 
 on:
   push:
@@ -45,5 +45,6 @@ jobs:
     - name: Push merged main branch
       run: git push origin main
 
-    - name: Delete merged branch
+    - name: Delete merged branch (except main)
+      if: steps.vars.outputs.branch != 'main'
       run: git push origin --delete ${{ steps.vars.outputs.branch }}

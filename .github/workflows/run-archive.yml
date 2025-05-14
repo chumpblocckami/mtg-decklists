@@ -2,12 +2,14 @@ name: hedron_archive
 
 on:
   push:
-    branches:
-      - "pauper*"
+    branches-ignore:
+      - main
+  schedule:
+    - cron: '0 * * * *'  # Every hour (UTC)
+  workflow_dispatch:
 
 permissions:
   contents: write  # required to push and delete
-
 
 jobs:
   auto-merge:

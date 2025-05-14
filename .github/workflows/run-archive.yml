@@ -16,13 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Extract pushed branch name
-      id: vars
-      run: |
-        BRANCH_NAME=${GITHUB_REF#refs/heads/}
-        echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
-
-    - name: Checkout main
+    - name: Checkout main branch
       uses: actions/checkout@v4
       with:
         fetch-depth: 0
@@ -33,18 +27,25 @@ jobs:
         git config user.name "GitHub Actions"
         git config user.email "actions@github.com"
 
-    - name: Fetch pushed branch
-      run: |
-        git fetch origin ${{ steps.vars.outputs.branch }}
+    - name: Fetch all branches
+      run: git fetch --all
 
-    - name: Merge pushed branch into main
+    - name: Merge all non-main branches into main
       run: |
         git checkout main
-        git merge --no-edit --allow-unrelated-histories origin/${{ steps.vars.outputs.branch }}
+        for branch in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | grep -vE '^main$|^HEAD$'); do
+          local_branch=${branch#origin/}
+          echo "Merging branch $local_branch into main..."
+          git merge --no-edit --allow-unrelated-histories origin/$local_branch || echo "Merge conflict or failure on $local_branch, skipping..."
+        done
 
-    - name: Push merged main branch
+    - name: Push updated main
       run: git push origin main
 
-    - name: Delete merged branch (except main)
-      if: steps.vars.outputs.branch != 'main'
-      run: git push origin --delete ${{ steps.vars.outputs.branch }}
+    - name: Delete merged branches (except main)
+      run: |
+        for branch in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | grep -vE '^main$|^HEAD$'); do
+          local_branch=${branch#origin/}
+          echo "Deleting branch $local_branch..."
+          git push origin --delete "$local_branch" || echo "Could not delete $local_branch"
+        done

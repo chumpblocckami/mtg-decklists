@@ -4,9 +4,7 @@ on:
   push:
     branches:
       - "pauper*"
-    branches-ignore:
-      - main  # we only want to handle new branches, not main
-      
+
 permissions:
   contents: write  # required to push and delete
 

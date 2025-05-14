@@ -1,0 +1,48 @@
+name: hedron_archive
+
+on:
+  create:
+    branches:
+      - '*'
+
+jobs:
+  auto-merge:
+    if: startsWith(github.ref, 'refs/heads/') && github.ref != 'refs/heads/main'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write        # To push and delete branches
+
+    steps:
+    - name: Extract branch name
+      id: vars
+      run: |
+        BRANCH_NAME=${GITHUB_REF#refs/heads/}
+        echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
+
+    - name: Checkout repo
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0
+        ref: main
+
+    - name: Set up Git
+      run: |
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+    - name: Fetch new branch
+      run: |
+        git fetch origin ${{ steps.vars.outputs.branch }}
+
+    - name: Merge branch into main
+      run: |
+        git checkout main
+        git merge --no-edit origin/${{ steps.vars.outputs.branch }}
+
+    - name: Push changes to main
+      run: git push origin main
+
+    - name: Delete merged branch from remote
+      run: |
+        git push origin --delete ${{ steps.vars.outputs.branch }}

@@ -5,7 +5,7 @@ on:
     branches-ignore:
       - main
   schedule:
-    - cron: '0 * * * *'  # Every hour (UTC)
+    - cron: '*/15 * * * *'  # Every 10 minutes (UTC)
   workflow_dispatch:
 
 permissions:

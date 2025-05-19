@@ -4,6 +4,9 @@ on:
   push:
     branches-ignore:
       - main
+  create:
+    branches:
+      - '**'
   schedule:
     - cron: '*/15 * * * *'  # Every 10 minutes (UTC)
   workflow_dispatch:

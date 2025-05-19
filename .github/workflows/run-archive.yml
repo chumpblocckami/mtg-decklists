@@ -8,11 +8,11 @@ on:
     branches:
       - '**'
   schedule:
-    - cron: '*/15 * * * *'  # Every 10 minutes (UTC)
+    - cron: '*/15 * * * *'  # Every 15 minutes
   workflow_dispatch:
 
 permissions:
-  contents: write  # required to push and delete
+  contents: write  # Required to push and delete branches
 
 jobs:
   auto-merge:
@@ -36,7 +36,7 @@ jobs:
     - name: Merge all non-main branches into main
       run: |
         git checkout main
-        for branch in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | grep -vE '^main$|^HEAD$'); do
+        for branch in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | grep -vE '^origin/main$|^origin/HEAD$'); do
           local_branch=${branch#origin/}
           echo "Merging branch $local_branch into main..."
           git merge --no-edit --allow-unrelated-histories origin/$local_branch || echo "Merge conflict or failure on $local_branch, skipping..."
@@ -47,7 +47,7 @@ jobs:
 
     - name: Delete merged branches (except main)
       run: |
-        for branch in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | grep -vE '^main$|^HEAD$'); do
+        for branch in $(git for-each-ref --format='%(refname:short)' refs/remotes/origin/ | grep -vE '^origin/main$|^origin/HEAD$'); do
           local_branch=${branch#origin/}
           echo "Deleting branch $local_branch..."
           git push origin --delete "$local_branch" || echo "Could not delete $local_branch"

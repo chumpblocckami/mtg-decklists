@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hericllys deck layout</title>
+  <style>
+    :root {
+      --card-w: 146px;
+      --card-h: 204px;
+      --col-gap: 2px;
+      --row-gap: 10px;
+      --shift: 21px;
+      --fig-w: 742px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      background: #fff;
+      color: #222;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 24px;
+    }
+    .page {
+      width: var(--fig-w);
+      max-width: 100%;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .header .player { font-weight: 700; font-size: 18px; }
+    .header .tourney { font-weight: 600; font-size: 14px; }
+    .header .date { font-weight: 600; font-size: 14px; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(5, var(--card-w));
+      column-gap: var(--col-gap);
+      row-gap: var(--row-gap);
+      justify-content: start;
+      width: var(--fig-w);
+      padding-left: var(--col-gap);
+      padding-right: var(--col-gap);
+      padding-top: var(--row-gap);
+      padding-bottom: var(--row-gap);
+      background: #fff;
+    }
+
+    .stack {
+      position: relative;
+      width: var(--card-w);
+      height: calc(var(--card-h) + 3 * var(--shift));
+    }
+    .stack img {
+      position: absolute;
+      width: var(--card-w);
+      height: var(--card-h);
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.25);
+      background: #eee;
+    }
+
+    /* Sideboard as one horizontal pile, same inner width as mainboard */
+    .sidepile-h {
+      position: relative;
+      width: 738px;
+      height: var(--card-h);
+      margin: 0 auto var(--row-gap) auto;
+    }
+    .sidepile-h img {
+      position: absolute;
+      width: var(--card-w);
+      height: var(--card-h);
+      object-fit: cover;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,.25);
+      background: #eee;
+      top: 0;
+    }
+    </style>
+</head>
+<body>
+  <main class="page">
+    <header class="header">
+      <div class="player">Hericllys</div>
+      <div class="tourney">Pauper League (5-0)</div>
+      <div class="date">2025-08-28</div>
+    </header>
+
+    <section class="grid">
+      <div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/7/b/7bfb33b6-e2bf-498f-8c58-ae21a840cf75.jpg?1752946757" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/7/b/7bfb33b6-e2bf-498f-8c58-ae21a840cf75.jpg?1752946757" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/7/b/7bfb33b6-e2bf-498f-8c58-ae21a840cf75.jpg?1752946757" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/7/b/7bfb33b6-e2bf-498f-8c58-ae21a840cf75.jpg?1752946757" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/2/8/284c4710-4183-4743-9c8b-515cc98cbbb8.jpg?1562815728" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/2/8/284c4710-4183-4743-9c8b-515cc98cbbb8.jpg?1562815728" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/2/8/284c4710-4183-4743-9c8b-515cc98cbbb8.jpg?1562815728" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/2/8/284c4710-4183-4743-9c8b-515cc98cbbb8.jpg?1562815728" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/d/7/d7501662-1216-4e08-bd2b-e0a459057942.jpg?1593812836" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/d/7/d7501662-1216-4e08-bd2b-e0a459057942.jpg?1593812836" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/d/7/d7501662-1216-4e08-bd2b-e0a459057942.jpg?1593812836" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/d/7/d7501662-1216-4e08-bd2b-e0a459057942.jpg?1593812836" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/d/f/dff51ae7-4b68-4770-915b-fb6bcf9ca1ed.jpg?1562268373" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/d/f/dff51ae7-4b68-4770-915b-fb6bcf9ca1ed.jpg?1562268373" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/d/f/dff51ae7-4b68-4770-915b-fb6bcf9ca1ed.jpg?1562268373" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/d/f/dff51ae7-4b68-4770-915b-fb6bcf9ca1ed.jpg?1562268373" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/b/3/b338e078-629c-4cac-bd1d-e1f0a132728d.jpg?1717012055" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/b/3/b338e078-629c-4cac-bd1d-e1f0a132728d.jpg?1717012055" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/b/3/b338e078-629c-4cac-bd1d-e1f0a132728d.jpg?1717012055" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/b/3/b338e078-629c-4cac-bd1d-e1f0a132728d.jpg?1717012055" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/4/6/466a0be8-31b9-4ea0-9a96-b09a76f4ec69.jpg?1682208952" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/4/6/466a0be8-31b9-4ea0-9a96-b09a76f4ec69.jpg?1682208952" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/4/6/466a0be8-31b9-4ea0-9a96-b09a76f4ec69.jpg?1682208952" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/4/6/466a0be8-31b9-4ea0-9a96-b09a76f4ec69.jpg?1682208952" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/a/b/aba79021-39af-4e74-beb5-f2f508c865b2.jpg?1674136020" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/a/b/aba79021-39af-4e74-beb5-f2f508c865b2.jpg?1674136020" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/a/b/aba79021-39af-4e74-beb5-f2f508c865b2.jpg?1674136020" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/d/d/dd03651e-ada0-41dc-8722-0eba476943e3.jpg?1643589142" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/d/d/dd03651e-ada0-41dc-8722-0eba476943e3.jpg?1643589142" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/b/0/b00573bd-5bbb-4531-a0bb-a40f62b92b88.jpg?1717011960" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/b/0/b00573bd-5bbb-4531-a0bb-a40f62b92b88.jpg?1717011960" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/9/b/9bfdf60a-6f67-4872-8961-d63776b192c3.jpg?1738356314" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/9/b/9bfdf60a-6f67-4872-8961-d63776b192c3.jpg?1738356314" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/6/a/6a283135-7a51-4cf7-82a6-7e50894e64a5.jpg?1562737167" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/6/a/6a283135-7a51-4cf7-82a6-7e50894e64a5.jpg?1562737167" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/d/d/dd28a646-f38f-4cdf-948c-969cd979e5e6.jpg?1717011565" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/d/d/dd28a646-f38f-4cdf-948c-969cd979e5e6.jpg?1717011565" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/d/b/dbaa9a2d-e9fd-4746-a26c-f99ae731f024.jpg?1699049915" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/d/b/dbaa9a2d-e9fd-4746-a26c-f99ae731f024.jpg?1699049915" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/6/6/66b562e4-35df-4aee-848d-ceb4204bbe58.jpg?1591226972" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/e/8/e85e4098-f872-4aa4-a71a-208b6090be28.jpg?1726285577" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/e/8/e85e4098-f872-4aa4-a71a-208b6090be28.jpg?1726285577" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/e/8/e85e4098-f872-4aa4-a71a-208b6090be28.jpg?1726285577" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/e/8/e85e4098-f872-4aa4-a71a-208b6090be28.jpg?1726285577" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/d/9/d9a7b0f6-97f9-4937-865c-e25c142c3ed7.jpg?1752945227" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/d/9/d9a7b0f6-97f9-4937-865c-e25c142c3ed7.jpg?1752945227" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/d/9/d9a7b0f6-97f9-4937-865c-e25c142c3ed7.jpg?1752945227" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/3/2/3235954d-a1b1-4822-b177-1691347d1e58.jpg?1682210483" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/3/2/3235954d-a1b1-4822-b177-1691347d1e58.jpg?1682210483" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/3/2/3235954d-a1b1-4822-b177-1691347d1e58.jpg?1682210483" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/9/f/9f36a6e2-3e51-4a30-a225-10cfe6650b9d.jpg?1739539029" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/9/f/9f36a6e2-3e51-4a30-a225-10cfe6650b9d.jpg?1739539029" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/9/f/9f36a6e2-3e51-4a30-a225-10cfe6650b9d.jpg?1739539029" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/0/b/0bbd24cd-48f7-40d7-9741-f30108f04b84.jpg?1752945410" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/0/b/0bbd24cd-48f7-40d7-9741-f30108f04b84.jpg?1752945410" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/0/b/0bbd24cd-48f7-40d7-9741-f30108f04b84.jpg?1752945410" alt="card" loading="lazy" style="top:63px;"></div><div class="stack" style="height:267px;"><img src="https://cards.scryfall.io/small/front/5/7/57a194b3-2899-4dee-977a-c77df0b94dfe.jpg?1752945475" alt="card" loading="lazy" style="top:0px;"><img src="https://cards.scryfall.io/small/front/5/7/57a194b3-2899-4dee-977a-c77df0b94dfe.jpg?1752945475" alt="card" loading="lazy" style="top:21px;"><img src="https://cards.scryfall.io/small/front/5/7/57a194b3-2899-4dee-977a-c77df0b94dfe.jpg?1752945475" alt="card" loading="lazy" style="top:42px;"><img src="https://cards.scryfall.io/small/front/b/0/b0c6fb5e-07e2-4d22-be19-60592f00584a.jpg?1752945235" alt="card" loading="lazy" style="top:63px;"></div>
+    </section>
+
+    <section class="sidepile-h">
+      <img src="https://cards.scryfall.io/small/front/2/f/2f51f88f-f662-4572-a371-9a77718ed079.jpg?1562434032" alt="sideboard card" loading="lazy" style="left:0.0px; z-index:0;"><img src="https://cards.scryfall.io/small/front/2/f/2f51f88f-f662-4572-a371-9a77718ed079.jpg?1562434032" alt="sideboard card" loading="lazy" style="left:42.285714285714285px; z-index:1;"><img src="https://cards.scryfall.io/small/front/2/f/2f51f88f-f662-4572-a371-9a77718ed079.jpg?1562434032" alt="sideboard card" loading="lazy" style="left:84.57142857142857px; z-index:2;"><img src="https://cards.scryfall.io/small/front/2/f/2f51f88f-f662-4572-a371-9a77718ed079.jpg?1562434032" alt="sideboard card" loading="lazy" style="left:126.85714285714286px; z-index:3;"><img src="https://cards.scryfall.io/small/front/d/f/dff1ee4e-cba1-4d2d-94fb-e3068d807cac.jpg?1562948324" alt="sideboard card" loading="lazy" style="left:169.14285714285714px; z-index:4;"><img src="https://cards.scryfall.io/small/front/d/f/dff1ee4e-cba1-4d2d-94fb-e3068d807cac.jpg?1562948324" alt="sideboard card" loading="lazy" style="left:211.42857142857142px; z-index:5;"><img src="https://cards.scryfall.io/small/front/d/f/dff1ee4e-cba1-4d2d-94fb-e3068d807cac.jpg?1562948324" alt="sideboard card" loading="lazy" style="left:253.71428571428572px; z-index:6;"><img src="https://cards.scryfall.io/small/front/d/b/db1fd431-8f6d-4ca5-bc0c-53881c500da1.jpg?1674135962" alt="sideboard card" loading="lazy" style="left:296.0px; z-index:7;"><img src="https://cards.scryfall.io/small/front/d/b/db1fd431-8f6d-4ca5-bc0c-53881c500da1.jpg?1674135962" alt="sideboard card" loading="lazy" style="left:338.2857142857143px; z-index:8;"><img src="https://cards.scryfall.io/small/front/3/4/34c3a894-ee75-4db9-a69f-711bb3cc150a.jpg?1730490899" alt="sideboard card" loading="lazy" style="left:380.57142857142856px; z-index:9;"><img src="https://cards.scryfall.io/small/front/3/4/34c3a894-ee75-4db9-a69f-711bb3cc150a.jpg?1730490899" alt="sideboard card" loading="lazy" style="left:422.85714285714283px; z-index:10;"><img src="https://cards.scryfall.io/small/front/6/a/6a283135-7a51-4cf7-82a6-7e50894e64a5.jpg?1562737167" alt="sideboard card" loading="lazy" style="left:465.1428571428571px; z-index:11;"><img src="https://cards.scryfall.io/small/front/6/a/6a283135-7a51-4cf7-82a6-7e50894e64a5.jpg?1562737167" alt="sideboard card" loading="lazy" style="left:507.42857142857144px; z-index:12;"><img src="https://cards.scryfall.io/small/front/d/d/dd28a646-f38f-4cdf-948c-969cd979e5e6.jpg?1717011565" alt="sideboard card" loading="lazy" style="left:549.7142857142857px; z-index:13;"><img src="https://cards.scryfall.io/small/front/d/d/dd28a646-f38f-4cdf-948c-969cd979e5e6.jpg?1717011565" alt="sideboard card" loading="lazy" style="left:592.0px; z-index:14;">
+    </section>
+  </main>
+</body>
+</html>

@@ -1,0 +1,49 @@
+name: Prune files older than 30 days
+
+on:
+  schedule:
+    - cron: "0 0 * * *"  # runs daily at 00:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  prune:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout main with full history
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Configure git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+
+      - name: Remove files whose last commit is older than 30 days
+        shell: bash
+        run: |
+          set -euo pipefail
+          cutoff=$(date -u -d "30 days ago" +%s)
+
+          git ls-files -z | while IFS= read -r -d '' f; do
+            case "$f" in
+              .git/*|.github/*) continue ;;
+            esac
+            ts=$(git log -1 --format=%ct -- "$f" || echo 0)
+            if [ -n "$ts" ] && [ "$ts" -gt 0 ] && [ "$ts" -lt "$cutoff" ]; then
+              git rm -f -- "$f"
+            fi
+          done
+
+      - name: Commit and push if changes
+        shell: bash
+        run: |
+          if ! git diff --staged --quiet; then
+            git commit -m "chore: remove files older than 30 days"
+            git push origin HEAD:main
+          fi
